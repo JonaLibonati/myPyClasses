@@ -16,16 +16,9 @@ class Menu():
     def ask(self) -> None:
         pass
 
-    # Option object
-    class Option:
-        def __init__(self, name: str, function: function, message = '') -> None:
-            self.name = name
-            self.message = message
-            self.function = function
-
 # Numeric Menu Object- Menu child
 class NumericMenu(Menu):
-    def addOptions(self, *args: Menu.Option) -> NumericMenu:
+    def addOptions(self, *args: Option) -> NumericMenu:
         for arg in args:
             self.options.append(arg)
         return self
@@ -53,8 +46,7 @@ class NumericMenu(Menu):
 
 # Binary Menu - Menu child
 class BinaryMenu(Menu):
-
-    def addOptions(self, optionYES: Menu.Option, optionNO: Menu.Option) -> BinaryMenu:
+    def addOptions(self, optionYES: Option, optionNO: Option) -> BinaryMenu:
             self.options.append(optionYES)
             self.options.append(optionNO)
             return self
@@ -69,7 +61,7 @@ class BinaryMenu(Menu):
                 self.answer = input('\nYou choose: ').lower().strip()
                 if not (self.isyes() or self.isno()):
                     print('\nInvalid input')
-                    print('Valid inputs: [y, n], [yes, no], [1, 0]')
+                    print('Valid inputs: [y, n], [yes, no], [1, 2]')
             if self.isyes():
                 self.options[0].function()
             else:
@@ -81,4 +73,28 @@ class BinaryMenu(Menu):
         return self.answer == 'y' or self.answer == 'yes' or self.answer == '1'
 
     def isno(self) -> bool:
-        return self.answer == 'n' or self.answer == 'no' or self.answer == '0'
+        return self.answer == 'n' or self.answer == 'no' or self.answer == '2'
+
+class CommandMenu(Menu):
+    def __init__(self, name='', message='') -> None:
+        super().__init__(name, message)
+        self.options = {}
+
+    def addOptions(self, *args: Menu.Option) -> CommandMenu:
+        for arg in args:
+            dict = {arg.name : arg.function}
+            self.options.update(dict)
+        return self
+
+    def ask(self, cmdOption) -> None:
+        try:
+            self.options[f'{cmdOption}']()
+        except KeyError as e:
+            print(e)
+
+# Option object
+class Option:
+    def __init__(self, name: str, function: function, message = '') -> None:
+        self.name = name
+        self.message = message
+        self.function = function
