@@ -104,6 +104,8 @@ class Result:
             self.line = f"🔴 - {self.description}"
         elif self.result == "warning":
             self.line = f"🟡  - {self.description}"
+        elif self.result == "comment":
+            self.line = f"{self.description}"
         else:
             self.line = 'CODE ERROR: Invalid result. Please use ["success" (default), "fail" or "warning"]'
 
