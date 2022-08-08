@@ -53,7 +53,7 @@ Asks to the user which option is executed and it executes.
 option1 = Option('option 1', lambda : print('Hello from option 1'), 'optional message')
 option2 = Option('option 2', lambda : print('Hello from option 2'))
 
-BinaryMenu().addOptions(option1, option2).ask()
+BinaryMenu('', 'Do you want to continue?').addOptions(option1, option2).ask()
 
 Result:
 Do you want to continue?
