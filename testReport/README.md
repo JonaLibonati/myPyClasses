@@ -120,7 +120,8 @@ Result:
 Contains the report lines as a list.
 ```
 [
-    '\n-------------------- REPORT TITLE --------------------\n', '\n------------ SECTION TITLE ------------\n',
+    '\n-------------------- REPORT TITLE --------------------\n', \
+    '\n------------ SECTION TITLE ------------\n',
     'comment message\n',
     '🟡 - Result message',
     '🔴 - Result message',
