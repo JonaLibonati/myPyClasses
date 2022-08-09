@@ -24,56 +24,6 @@ section.addSubSection(subsection)
 Report.addSection(section)
 ```
 
-## Class Result(description: str, result = 'comment')
-This class creates a Result object. The first parameter is the result description as string. The second parameter is the result it self and it can take four values which are 'success', 'fail', 'warning' or 'comment'
-
-### description
-Contains the description as string.
-
-### result
-Contains the result as string.
-
-### data
-Contains the result data as a dictionary.
-
-### line
-Contains the result line as string.
-
-### print()
-Prints the result on the terminal.
-
-## Class Section(name: str)
-
-### name
-Contains the section name as string.
-
-### data
-Contains the section data as a list of dictionaries.
-
-### subsection
-Contains the Subsection object added to the report as a list.
-
-### results
-Contains the Result object added to the report as a list.
-
-### lines
-Contains the section lines as a list.
-
-### addResult(*args: Result)
-Adds the Result objects to the report.
-
-### addSubSection(*args: Subsection)
-Adds the Subsection objects to the report.
-
-### setName(new_name: str)
-Set the section name.
-
-### print()
-Prints the section on the terminal.
-
-## Class Subsection(name: str)
-This class creates a Subsection object which inherits from Section object, therefore it has the same properties and methods.
-
 ## Class TestReport(name: str)
 This class creates a TestReport object. The parameter is the name of the resport as string.
 The report is empty when it is created. By using addSection(*args: Section), the diferent section are included in the report.
@@ -169,3 +119,53 @@ comment message
 
 🟢 - Subsection Result Message
 ```
+
+## Class Result(description: str, result = 'comment')
+This class creates a Result object. The first parameter is the result description as string. The second parameter is the result it self and it can take four values which are 'success', 'fail', 'warning' or 'comment'
+
+### description
+Contains the description as string.
+
+### result
+Contains the result as string.
+
+### data
+Contains the result data as a dictionary.
+
+### line
+Contains the result line as string.
+
+### print()
+Prints the result on the terminal.
+
+## Class Section(name: str)
+
+### name
+Contains the section name as string.
+
+### data
+Contains the section data as a list of dictionaries.
+
+### subsection
+Contains the Subsection object added to the report as a list.
+
+### results
+Contains the Result object added to the report as a list.
+
+### lines
+Contains the section lines as a list.
+
+### addResult(*args: Result)
+Adds the Result objects to the report.
+
+### addSubSection(*args: Subsection)
+Adds the Subsection objects to the report.
+
+### setName(new_name: str)
+Set the section name.
+
+### print()
+Prints the section on the terminal.
+
+## Class Subsection(name: str)
+This class creates a Subsection object which inherits from Section object, therefore it has the same properties and methods.
