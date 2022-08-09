@@ -3,7 +3,7 @@ from __future__ import annotations
 class TestReport:
     def __init__(self, name: str) -> None:
         self.name = name
-        self.data = [{"type": 'title', "data": self.name, "result": None}]
+        self.data = [{"type": 'title', "data": self.name}]
         self.sections = []
         self.lines = []
         self._firstLine()
@@ -24,7 +24,7 @@ class TestReport:
 
     def setName(self, new_name: str) -> None:
         self.name = new_name
-        self.data[0] = {"type": 'title', "data": self.name, "result": None}
+        self.data[0] = {"type": 'title', "data": self.name}
         if len(self.name) <= 60:
             self.lines[0] = f"\n---------------------- {self.name.upper()} ----------------------\n"
         else: self.lines[0] = f"\n{self.name.upper()}\n"
@@ -42,7 +42,7 @@ class TestReport:
 class Section:
     def __init__(self, name: str) -> None:
         self.name = name
-        self.data = [{"type": 'subtitle', "data": self.name, "result": None}]
+        self.data = [{"type": 'subtitle', "data": self.name}]
         self.subsection = []
         self.results = []
         self.lines = []
@@ -74,7 +74,7 @@ class Section:
 
     def setName(self, new_name: str) -> None:
         self.name = new_name
-        self.data[0] = {"type": 'title', "data": self.name, "result": None}
+        self.data[0] = {"type": 'title', "data": self.name}
         if len(self.name) <= 60:
             self.lines[0] = f"\n------------ {self.name.upper()} ------------\n"
         else: self.lines[0] = f"\n{self.name.upper()}\n"
@@ -90,7 +90,7 @@ class Subsection(Section):
         else: self.lines.append(f"\n{self.name.upper()}\n")
 
 class Result:
-    def __init__(self, description: str, result = 'success') -> None:
+    def __init__(self, description: str, result = 'comment') -> None:
         self.description = description
         self.result = result
         self.data = {"type": 'result', "data": self.description, "result": result}
@@ -103,11 +103,11 @@ class Result:
         elif self.result == "fail":
             self.line = f"🔴 - {self.description}"
         elif self.result == "warning":
-            self.line = f"🟡  - {self.description}"
+            self.line = f"🟡 - {self.description}"
         elif self.result == "comment":
             self.line = f"{self.description}"
         else:
-            self.line = 'CODE ERROR: Invalid result. Please use ["success" (default), "fail" or "warning"]'
+            self.line = 'CODE ERROR: Invalid result. Please use ["success", "fail, "warning" or "comment"(default)]'
 
     def print(self) -> None:
         print(self.line)
